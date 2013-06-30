@@ -1,0 +1,6 @@
+syntax: glob
+*.suo
+*/bin/
+DB Schema Report/ipcmia-vpse010.rds
+*.user
+DB Schema Report/DB Schema.rdl.data

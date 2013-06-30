@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>DBServer</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@table_name">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:UserDefined>true</rd:UserDefined>
+          <rd:DbType>String</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>
+ SELECT     SysInd.object_id As Table_Object_ID
+            ,SysInd.name AS Index_Name
+            ,SysInd.index_id AS Index_ID
+            ,SysInd.type_desc AS Index_Type
+            ,SysInd.is_disabled 
+            ,SysInd.is_unique
+            ,SysInd.is_primary_key
+            ,SysInd.is_unique_constraint
+ FROM       sys.indexes SysInd WITH (NOLOCK)
+ JOIN       sys.tables  SysTbl  WITH (NOLOCK) ON SysInd.object_id = SysTbl.object_id
+ WHERE      SysTbl.name = @table_name</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Table_Object_ID">
+        <DataField>Table_Object_ID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Index_Name">
+        <DataField>Index_Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Index_ID">
+        <DataField>Index_ID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Index_Type">
+        <DataField>Index_Type</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="is_disabled">
+        <DataField>is_disabled</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+      <Field Name="is_unique">
+        <DataField>is_unique</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+      <Field Name="is_primary_key">
+        <DataField>is_primary_key</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+      <Field Name="is_unique_constraint">
+        <DataField>is_unique_constraint</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
